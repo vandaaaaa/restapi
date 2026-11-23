@@ -1,0 +1,7 @@
+{
+    "name": "Zip API",
+    "version": "1.0.0",
+    "description": "Megyék és városok REST API",
+    "title": "Zip API dokumentáció",
+    "url": "http://localhost:8000/api"
+  }

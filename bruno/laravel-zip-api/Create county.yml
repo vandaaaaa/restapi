@@ -1,0 +1,20 @@
+info:
+  name: Create county
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8000/api/counties
+  body:
+    type: json
+    data: '   { "name": "Pest" }'
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
