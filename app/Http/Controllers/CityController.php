@@ -60,7 +60,7 @@ public function store(Request $request)
         'county_id' => 'required|exists:counties,id',
     ]);
 
-    $city = City::create($request->all());
+    $city = City::create($request->only(['name', 'county_id']));
 
     return response()->json([
         'city' => $city,
@@ -84,8 +84,13 @@ public function store(Request $request)
  */
 public function update(Request $request, $id)
 {
+    $request->validate([
+        'name' => 'sometimes|required|string|max:255',
+        'county_id' => 'sometimes|required|exists:counties,id',
+    ]);
+
     $city = City::findOrFail($id);
-    $city->update($request->all());
+    $city->update($request->only(['name', 'county_id']));
 
     return response()->json([
         'city' => $city,

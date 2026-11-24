@@ -8,7 +8,6 @@ use App\Models\User;
 class AuthController extends Controller
 {
 /**
- * **
  * @api {post} /login Bejelentkezés
  * @apiVersion 1.0.0
  * @apiName Login

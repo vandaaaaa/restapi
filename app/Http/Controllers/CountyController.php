@@ -45,7 +45,7 @@ public function store(Request $request)
         'name' => 'required|string|max:255',
     ]);
 
-    $county = County::create($request->all());
+    $county = County::create($request->only(['name']));
 
     return response()->json([
         'county' => $county,
@@ -65,11 +65,16 @@ public function store(Request $request)
  *
  * @apiError (401) {String} message Nincs vagy érvénytelen token
  * @apiError (404) {String} message A megye nem található
+ * @apiError (422) {Object} errors Hibás vagy hiányzó adat
  */
 public function update(Request $request, $id)
 {
+    $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
     $county = County::findOrFail($id);
-    $county->update($request->all());
+    $county->update($request->only(['name']));
 
     return response()->json([
         'county' => $county,
